@@ -1,23 +1,39 @@
 #Board, array
 Board = []
 
+#User, is the starting place
+user = 'W'
+
 #dictionary translates Horizontal letters to numbers which can work inside the array
 dictionaryRow = {'a':0,'b':1,'c':2,'d':3,'e':4,'f':5,'g':6,'h':7}
 
-def isRookLegalVert(n1,n2):
-    step = 1
-    if n2<n1:
-        step = -1
-    for i in (n1,n2):
-        
+#Note: 1 refers to rows (numbers) while 2 refers to column (letters)
 
-def rook(orig,final):
-    number1 = dict(orig[0])
-    number2 = int(orig[1])
-    final1 = dict(final[0])
-    final2 = dict(final[1])
+
+def isRookLegalVertical(n1,n2,f2,user):
+    step = 1
+    if f2<n2:
+        step = -1
+    check = True
+    for i in (n2+1,f2+1,step):
+        temp = Board[n1,i]
+        if i != f2+1:
+            if temp != '.':
+                check = False
+        else: 
+            if temp[1] == user:
+                check = False
+    return check
+    
+
+def rook(orig,final,user):
+    number2 = dict(orig[0])
+    number1 = int(orig[1])
+    final2 = dict(final[0])
+    final1 = dict(final[1])
     if number1 == final1:
-        isRookLegalVert(number1,number2)
+        if (isRookLegalVertical(number1,number2,final2,user)):
+
     elif number2 == final2:
 
 
