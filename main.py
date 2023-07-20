@@ -15,9 +15,9 @@ def isRookLegalVertical(n1,n2,f2,user):
     if f2<n2:
         step = -1
     check = True
-    for i in (n2+1,f2+1,step):
+    for i in (n2+step,f2+step,step):
         temp = Board[n1,i]
-        if i != f2+1:
+        if i != f2+step:
             if temp != '.':
                 check = False
         else: 
@@ -33,8 +33,10 @@ def rook(orig,final,user):
     final1 = dict(final[1])
     if number1 == final1:
         if (isRookLegalVertical(number1,number2,final2,user)):
-
+            Board[final1][final2] = orig + user
+            Board[number1][number2] = '.'
     elif number2 == final2:
+        print("to be continued")
 
 
 for i in range(8):
@@ -59,3 +61,4 @@ while end == False:
     for i in Board:
         print(i)
     if p1==True:
+        "To be continued"
