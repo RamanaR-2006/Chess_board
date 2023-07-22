@@ -17,7 +17,22 @@ def isRookLegalVertical(n1,n2,f2,user):
     check = True
     for i in (n2+step,f2+step,step):
         temp = Board[n1,i]
-        if i != f2+step:
+        if i != f2:
+            if temp != '.':
+                check = False
+        else: 
+            if temp[1] == user:
+                check = False
+    return check
+
+def isRookLegalHorizontal(n1,n2,f1,user):
+    step = 1
+    if f1<n1:
+        step = -1
+    check = True
+    for i in (n1+step,f1+step,step):
+        temp = Board[i,n2]
+        if i != f1:
             if temp != '.':
                 check = False
         else: 
@@ -25,18 +40,32 @@ def isRookLegalVertical(n1,n2,f2,user):
                 check = False
     return check
     
+def pawn(orig,final,user):
+    number2 = dict(orig[0])
+    number1 = int(orig[1])
+    final2 = dict(final[0])
+    final1 = dict(final[1])
+    if number2 == final2:
+        
+
 
 def rook(orig,final,user):
     number2 = dict(orig[0])
     number1 = int(orig[1])
     final2 = dict(final[0])
     final1 = dict(final[1])
-    if number1 == final1:
+    if number2 == final2:
         if (isRookLegalVertical(number1,number2,final2,user)):
             Board[final1][final2] = orig + user
             Board[number1][number2] = '.'
-    elif number2 == final2:
-        print("to be continued")
+            return True
+    elif number1 == final1:
+        if (isRookLegalHorizontal(number1,number2,final1,user)):
+            Board[final1][final2] = orig + user
+            Board[number1][number2] = '.'
+            return True
+    else:
+        return False
 
 
 for i in range(8):
